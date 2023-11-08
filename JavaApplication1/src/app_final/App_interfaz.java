@@ -4,12 +4,19 @@
  */
 package app_final;
 
+import java.util.LinkedList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author AP-SE105-01
  */
 public class App_interfaz extends javax.swing.JFrame {
-
+    LinkedList<cls_workers> Workers = new LinkedList<>();
+    boolean bln_sw;
+    int int_position;
+    
+    
     /**
      * Creates new form App_interfaz
      */
@@ -156,6 +163,11 @@ public class App_interfaz extends javax.swing.JFrame {
         btn_save.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btn_save.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app_final/img/save.png"))); // NOI18N
         btn_save.setText("Save");
+        btn_save.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_saveActionPerformed(evt);
+            }
+        });
 
         btn_update.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btn_update.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app_final/img/update.png"))); // NOI18N
@@ -164,6 +176,11 @@ public class App_interfaz extends javax.swing.JFrame {
         btn_consult.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btn_consult.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app_final/img/consult.png"))); // NOI18N
         btn_consult.setText("Consult");
+        btn_consult.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_consultActionPerformed(evt);
+            }
+        });
 
         btn_cancel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btn_cancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app_final/img/cancel.png"))); // NOI18N
@@ -525,7 +542,13 @@ public class App_interfaz extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelActionPerformed
-        // TODO add your handling code here:
+       txt_code.setText("");
+       txt_name.setText("");
+       cbx_job.setSelectedIndex(0);
+       cbx_sex.setSelectedIndex(0);
+       txt_contact.setText("");
+       txt_address.setText("");
+       txt_email.setText("");    
     }//GEN-LAST:event_btn_cancelActionPerformed
 
     private void txt_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nameActionPerformed
@@ -539,6 +562,44 @@ public class App_interfaz extends javax.swing.JFrame {
     private void btn_cancel_plotsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancel_plotsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_cancel_plotsActionPerformed
+
+    private void btn_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveActionPerformed
+       Workers.add(new cls_workers(
+       txt_code.getText(),
+       txt_name.getText(),
+               cbx_job.getSelectedIndex(),
+       cbx_sex.getSelectedIndex(),
+       txt_contact.getText(),
+       txt_address.getText(),
+       txt_email.getText()));
+       
+        JOptionPane.showMessageDialog(null, "successfully registered worker");
+    }//GEN-LAST:event_btn_saveActionPerformed
+
+    private void btn_consultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consultActionPerformed
+        bln_sw = false;
+        int_position = 0;
+        for (int i = 0; i < Workers.size(); i++){
+            if(txt_code.getText().equals(Workers.get(i).getStr_code())){
+                bln_sw = true;
+                int_position = i;
+                break;
+            }
+        }
+        
+        
+        if (bln_sw == false){
+            JOptionPane.showMessageDialog(null,"No se encontraron registros", "Consultar", JOptionPane.ERROR_MESSAGE );
+        }else{
+    
+            txt_name.setText(Workers.get(int_position).getStr_name());
+            cbx_job.setSelectedIndex(Workers.get(int_position).getInt_job());
+            cbx_sex.setSelectedIndex(Workers.get(int_position).getInt_sexo());
+            txt_contact.setText(Workers.get(int_position).getStr_contact());
+            txt_address.setText(Workers.get(int_position).getStr_address());
+            txt_email.setText(Workers.get(int_position).getStr_email());
+        }
+    }//GEN-LAST:event_btn_consultActionPerformed
 
     /**
      * @param args the command line arguments
