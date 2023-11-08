@@ -13,8 +13,11 @@ import javax.swing.JOptionPane;
  */
 public class App_interfaz extends javax.swing.JFrame {
     LinkedList<cls_workers> Workers = new LinkedList<>();
+    LinkedList<cls_plots> Plots = new LinkedList<>();
     boolean bln_sw;
+    boolean bln_sw_plots;
     int int_position;
+    int int_position_plots;
     
     
     /**
@@ -375,6 +378,11 @@ public class App_interfaz extends javax.swing.JFrame {
         btn_save_plots.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btn_save_plots.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app_final/img/save.png"))); // NOI18N
         btn_save_plots.setText("Save");
+        btn_save_plots.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_save_plotsActionPerformed(evt);
+            }
+        });
 
         btn_update_plots.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btn_update_plots.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app_final/img/update.png"))); // NOI18N
@@ -383,6 +391,11 @@ public class App_interfaz extends javax.swing.JFrame {
         btn_consult_plots.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btn_consult_plots.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app_final/img/consult.png"))); // NOI18N
         btn_consult_plots.setText("Consult");
+        btn_consult_plots.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_consult_plotsActionPerformed(evt);
+            }
+        });
 
         btn_cancel_plots.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btn_cancel_plots.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app_final/img/cancel.png"))); // NOI18N
@@ -567,7 +580,7 @@ public class App_interfaz extends javax.swing.JFrame {
        Workers.add(new cls_workers(
        txt_code.getText(),
        txt_name.getText(),
-               cbx_job.getSelectedIndex(),
+       cbx_job.getSelectedIndex(),
        cbx_sex.getSelectedIndex(),
        txt_contact.getText(),
        txt_address.getText(),
@@ -600,6 +613,45 @@ public class App_interfaz extends javax.swing.JFrame {
             txt_email.setText(Workers.get(int_position).getStr_email());
         }
     }//GEN-LAST:event_btn_consultActionPerformed
+
+    private void btn_save_plotsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_save_plotsActionPerformed
+            Plots.add(new cls_plots(
+            txt_code_plots.getText(),
+            txt_name_plots.getText(),
+            txt_area_plots.getText(),
+            txt_address_plots.getText(),
+            txt_crops_plots.getText(),
+            txt_woker_code.getText()));
+            
+            JOptionPane.showMessageDialog(null, "successfully registered plots");
+
+                
+    }//GEN-LAST:event_btn_save_plotsActionPerformed
+
+    private void btn_consult_plotsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_consult_plotsActionPerformed
+                bln_sw_plots = false;
+                int_position_plots = 0;
+                for (int i = 0; i < Plots.size(); i++){
+                    if(txt_code_plots.getText().equals(Plots.get(i).getStr_code())){
+                        bln_sw = true;
+                        int_position = i;
+                        break;
+                    }
+                }
+
+
+                if (bln_sw == false){
+                    JOptionPane.showMessageDialog(null,"No se encontraron registros", "Consultar", JOptionPane.ERROR_MESSAGE );
+                }else{
+
+                    txt_code_plots.setText(Plots.get(int_position_plots).getStr_code());
+                    txt_name_plots.setText(Plots.get(int_position_plots).getStr_name());
+                    txt_area_plots.setText(Plots.get(int_position).getStr_area());
+                    txt_address_plots.setText(Plots.get(int_position_plots).getStr_address());
+                    txt_crops_plots.setText(Plots.get(int_position_plots).getStr_crops());
+                    txt_woker_code.setText(Plots.get(int_position).getStr_code_worker());
+                }
+    }//GEN-LAST:event_btn_consult_plotsActionPerformed
 
     /**
      * @param args the command line arguments
