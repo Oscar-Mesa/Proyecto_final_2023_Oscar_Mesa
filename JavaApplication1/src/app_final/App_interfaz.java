@@ -5,6 +5,7 @@
 package app_final;
 
 import java.util.LinkedList;
+import java.util.Set;
 import javax.swing.JOptionPane;
 
 /**
@@ -573,7 +574,13 @@ public class App_interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_name_plotsActionPerformed
 
     private void btn_cancel_plotsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancel_plotsActionPerformed
-        // TODO add your handling code here:
+        txt_code_plots.setText("");
+        txt_name_plots.setText("");
+        txt_area_plots.setText("");
+        txt_address_plots.setText("");
+        txt_crops_plots.setText("");
+        txt_woker_code.setText("");
+        
     }//GEN-LAST:event_btn_cancel_plotsActionPerformed
 
     private void btn_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveActionPerformed
