@@ -609,7 +609,7 @@ public class App_interfaz extends javax.swing.JFrame {
         
         
         if (bln_sw == false){
-            JOptionPane.showMessageDialog(null,"No se encontraron registros", "Consultar", JOptionPane.ERROR_MESSAGE );
+            JOptionPane.showMessageDialog(null,"No records found", "Consultar", JOptionPane.ERROR_MESSAGE );
         }else{
     
             txt_name.setText(Workers.get(int_position).getStr_name());
@@ -648,7 +648,7 @@ public class App_interfaz extends javax.swing.JFrame {
 
 
                 if (bln_sw == false){
-                    JOptionPane.showMessageDialog(null,"No se encontraron registros", "Consultar", JOptionPane.ERROR_MESSAGE );
+                    JOptionPane.showMessageDialog(null,"No records found", "Consultar", JOptionPane.ERROR_MESSAGE );
                 }else{
 
                     txt_code_plots.setText(Plots.get(int_position_plots).getStr_code());
